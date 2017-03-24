@@ -74,6 +74,12 @@ public interface Cache<K,V> {
     void flush();
     
     /**
+     * Returns true if the Cache is completely full.
+     * @return true if the cache is full, false if it is not
+     */
+    boolean isAtCapacity();
+    
+    /**
      * Returns the capacity of the Cache. This is the maximum number of objects
      * the Cache can contain.
      * @return the capacity of the Cache
