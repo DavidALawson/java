@@ -31,6 +31,14 @@ package cache;
 public class LRUCache extends RUCache {
 
     /**
+     * Initializer with the capacity of the Cache.
+     * @param capacity the capacity of the Cache
+     */
+    public LRUCache(int capacity) {
+        super(capacity);
+    }
+    
+    /**
      * Selects the end to be the object to be removed.
      */
     @Override
