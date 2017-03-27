@@ -23,6 +23,7 @@
  */
 package cache;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,12 +38,21 @@ import java.util.Map;
  * @param <K> type of key
  * @param <V> type of stored objects
  */
-public abstract class RUCache<K,V> implements Cache<K,V> {
-    private Map<K,Node> storedObjects;
+abstract class RUCache<K,V> implements Cache<K,V> {
+    private final Map<K,Node> storedObjects;
     Node start;
     Node end;
     int capacity;
 
+    /**
+     * Initializer with the given capacity. Initializes the underlying Map as 
+     * well.
+     * @param capacity the capacity of the Cache
+     */
+    RUCache(int capacity) {
+        this.capacity = capacity;
+        storedObjects = new HashMap<>(capacity);
+    }
     
     @Override
     public V get(K key) {
