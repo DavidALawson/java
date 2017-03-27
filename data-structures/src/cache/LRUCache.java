@@ -24,9 +24,17 @@
 package cache;
 
 /**
- *
+ * A Cache that implements  a least recently used (LRU) replacement policy upon
+ * insertion into a full Cache.
  * @author DavidALawson
  */
-public class LRUCache {
-    
+public class LRUCache extends RUCache {
+
+    /**
+     * Selects the end to be the object to be removed.
+     */
+    @Override
+    Node getNodeOfObjectToReplace() {
+        return end;
+    }
 }
