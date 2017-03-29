@@ -45,12 +45,13 @@ abstract class RUCache<K,V> implements Cache<K,V> {
     int capacity;
 
     /**
-     * Initializer with the given capacity. Initializes the underlying Map as 
+     * Initializer with the given capacity. If the capacity is not greater than
+     * zero, than it is defaulted to 1. Initializes the underlying Map as 
      * well.
      * @param capacity the capacity of the Cache
      */
     RUCache(int capacity) {
-        this.capacity = capacity;
+        this.capacity = (capacity > 0 ? capacity : 1);
         storedObjects = new HashMap<>(capacity);
     }
     
