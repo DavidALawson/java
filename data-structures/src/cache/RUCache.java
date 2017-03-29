@@ -141,8 +141,11 @@ abstract class RUCache<K,V> implements Cache<K,V> {
         if(start == null && end == null) {
             start = node;
             end = node;
+            node.next = null;
+            node.previous = null;
         }
         else {
+            start.previous = node;
             node.next = start;
             node.previous = null;
             start = node;
@@ -172,14 +175,20 @@ abstract class RUCache<K,V> implements Cache<K,V> {
         K key;
         V storedObject;
         
-        Node(K key, V storedObject) {
+        private Node(K key, V storedObject) {
             this.key = key;
             this.storedObject = storedObject;
         }
         
-        void remove() {
-            next.previous  = previous;
-            previous.next = next;
+        // Removes the node from next.previous and previous.next if they exist
+        // and replaces them with previous and next respectfully.
+        private void remove() {
+            if(next != null) {
+                next.previous  = previous;
+            }
+            if(previous != null) {
+                previous.next = next;
+            }
         }
     }
 }
